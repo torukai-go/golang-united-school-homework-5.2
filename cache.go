@@ -1,6 +1,9 @@
 package cache
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 type Pair struct {
 	Value    string
@@ -59,5 +62,8 @@ func (p Pair) Expired() bool {
 	if p.Deadline.IsZero() {
 		return false
 	}
-	return p.Deadline.After(time.Now())
+	fmt.Println("Ded: ", p.Deadline)
+	fmt.Println("Now: ", time.Now())
+	t := time.Now().After(p.Deadline)
+	return t
 }
